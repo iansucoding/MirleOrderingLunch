@@ -38,6 +38,7 @@ namespace MirleOrdering.API
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<ISettingService, SettingService>();
 
             services.AddCors(options =>
             {

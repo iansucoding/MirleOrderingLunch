@@ -83,6 +83,8 @@ namespace MirleOrdering.Service
             entity.Name = model.CategoryName;
             entity.Description = model.Description;
             entity.Seq = model.Seq;
+            entity.PhoneNumber = model.PhoneNumber;
+            entity.Address = model.Address;
             entity.ModifiedOn = DateTime.Now;
 
             try
