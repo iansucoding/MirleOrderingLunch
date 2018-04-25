@@ -8,6 +8,6 @@ namespace MirleOrdering.Data.Models
         [Key]
         public long Id { get; set; }
         public DateTime AddedOn { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
     }
 }

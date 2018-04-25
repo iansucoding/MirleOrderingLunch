@@ -23,7 +23,7 @@ namespace MirleOrdering.Repo
         {
             return _entities.AsQueryable();
         }
-
+        
         public int Count(Func<T, bool> predicate)
         {
             return _context.Set<T>().Where(predicate).Count();

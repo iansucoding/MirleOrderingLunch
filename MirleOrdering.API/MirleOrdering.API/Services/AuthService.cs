@@ -27,15 +27,16 @@ namespace MirleOrdering.Api.Services
                 .Find(user => user.Email == login.Email && user.Password == login.Password)
                 .FirstOrDefault();
         }
+
         public string BuildToken(UserViewModel user)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Role, user.RoleName)
+                new Claim("userId", user.UserId.ToString()),
+                new Claim("userName", user.UserName),
+                new Claim("email", user.Email),
+                new Claim(ClaimTypes.Role, user.RoleName),
+                new Claim("guid", Guid.NewGuid().ToString()),
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -49,6 +50,17 @@ namespace MirleOrdering.Api.Services
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public UserViewModel GetUserFromClaimsPrincipal(ClaimsPrincipal claims)
+        {
+            if (claims.HasClaim(c => c.Type == "userId"))
+            {
+                string userName = claims.Claims.FirstOrDefault(c => c.Type == "userName").Value;
+                long userId = long.Parse(claims.Claims.FirstOrDefault(c => c.Type == "userId").Value);
+                return _userService.GetById(userId);
+            }
+            return null;
         }
     }
 }

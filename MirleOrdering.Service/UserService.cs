@@ -24,8 +24,7 @@ namespace MirleOrdering.Service
             UserId = user.Id,
             UserName = user.Name,
             Email = user.Email,
-            Address = user.Address,
-            PhoneNumber = user.PhoneNumber,
+            Balance = user.Balance,
             RoleId = user.RoleId,
             RoleName = user.RoleId.HasValue && user.Role != null ? user.Role.Name : null,
             GroupId = user.GroupId,
@@ -68,8 +67,7 @@ namespace MirleOrdering.Service
             {
                 Name = model.UserName,
                 Email = model.Email,
-                Address = model.Address,
-                PhoneNumber = model.PhoneNumber,
+                Balance = model.Balance,
                 RoleId = model.RoleId,
                 GroupId = model.GroupId,
                 AddedOn = DateTime.Now
@@ -99,8 +97,7 @@ namespace MirleOrdering.Service
             }
             entity.Name = model.UserName;
             entity.Email = model.Email;
-            entity.PhoneNumber = model.PhoneNumber;
-            entity.Address = model.Address;
+            entity.Balance = model.Balance;
             entity.RoleId = model.RoleId;
             entity.GroupId = model.GroupId;
             entity.ModifiedOn = DateTime.Now;
@@ -141,7 +138,12 @@ namespace MirleOrdering.Service
             result.IsSuccess = true;
             return result;
         }
-
+        public void AddUserBalance(long userId, int totalCost)
+        {
+            var user = _repository.GetById(userId);
+            user.Balance += totalCost;
+            _repository.Update(user);
+        }
 
     }
 }

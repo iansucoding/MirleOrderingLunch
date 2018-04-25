@@ -17,6 +17,7 @@ namespace MirleOrdering.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,7 @@ namespace MirleOrdering.Data
             modelBuilder.Entity<Group>().ToTable("Group");
             modelBuilder.Entity<Setting>().ToTable("Setting");
             modelBuilder.Entity<Schedule>().ToTable("Schedule");
+            modelBuilder.Entity<Order>().ToTable("Order");
         }
     }
 }

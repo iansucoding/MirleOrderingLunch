@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MirleOrdering.Data.Models
+﻿namespace MirleOrdering.Data.Models
 {
     public class Product : BaseEntity
     {
@@ -11,7 +9,6 @@ namespace MirleOrdering.Data.Models
         public int Seq { get; set; }
 
         public int Price { get; set; }
-
 
         public virtual Category Category { get; set; }
         public long CategoryId { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MirleOrdering.Api.Services;
 using MirleOrdering.Service.Interfaces;
 using MirleOrdering.Service.ViewModels;
 
@@ -11,10 +12,12 @@ namespace MirleOrdering.Api.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
+        private AuthService _authService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, AuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
 
         // GET: api/user
@@ -38,6 +41,7 @@ namespace MirleOrdering.Api.Controllers
 
         // POST: api/user
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create([FromBody]UserBaseModel user)
         {
             if (user == null)
@@ -77,6 +81,7 @@ namespace MirleOrdering.Api.Controllers
         }
         // DELETE api/user/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var user = _userService.GetById(id);
@@ -85,6 +90,22 @@ namespace MirleOrdering.Api.Controllers
                 return NotFound();
             }
             return Json(_userService.Delete(id));
+        }
+        // GET api/user/get-by-token
+        [HttpGet("get-by-token")]
+        [Authorize]
+        public IActionResult GetUserFromToken()
+        {
+            var claimsPrincipal = HttpContext.User;
+            var user = _authService.GetUserFromClaimsPrincipal(claimsPrincipal);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+            else
+            {
+                return new ObjectResult(user);
+            }
         }
     }
 }

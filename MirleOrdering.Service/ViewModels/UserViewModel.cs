@@ -4,10 +4,9 @@
     {
         public string UserName { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
         public long? RoleId { get; set; }
         public long? GroupId { get; set; }
+        public int Balance { get; set; }
     }
     public class UserViewModel : UserBaseModel
     {

@@ -16,8 +16,8 @@ namespace MirleOrdering.Data
             }
             var addOn = DateTime.Now;
             // Add categories
-            var category1 = new Category { Name = "蘋果便當", Seq = 1, AddedOn = addOn };
-            var category2 = new Category { Name = "曾師傅便幫", Seq = 2, AddedOn = addOn };
+            var category1 = new Category { Name = "盟盟便當店", Seq = 1, AddedOn = addOn };
+            var category2 = new Category { Name = "曾師傅便當", Seq = 2, AddedOn = addOn };
             var categories = new Category[]
             {
                 category1,
@@ -62,7 +62,7 @@ namespace MirleOrdering.Data
             // Add users
             var users = new User[]
             {
-                new User{ Name="John",Email="john@mail.com",RoleId=roleAdmin.Id, GroupId=groupManagement.Id,Password="0000", AddedOn=addOn},
+                new User{ Name="John",Email="john@mail.com",RoleId=roleAdmin.Id, GroupId=groupManagement.Id,Password="0000", AddedOn=addOn, Balance=100},
                 new User{ Name="Bob",Email="bob@mail.com",RoleId=roleAdmin.Id, GroupId=groupIT.Id,Password="0000", AddedOn=addOn},
                 new User{ Name="Peter",Email="peter@mail.com",RoleId=roleUser.Id, GroupId=groupIT.Id,Password="0000", AddedOn=addOn}
             };
@@ -71,6 +71,15 @@ namespace MirleOrdering.Data
             // Add setting
             var setting = new Setting { StopHourOn = 11, Announcement = "測試中", AddedOn = addOn };
             context.Settings.Add(setting);
+            context.SaveChanges();
+            // add schedule
+            context.Schedules.Add(new Schedule
+            {
+                CategoryId = category1.Id,
+                AvailableOn =
+                addOn.Date,
+                AddedOn = addOn
+            });
             context.SaveChanges();
         }
     }
