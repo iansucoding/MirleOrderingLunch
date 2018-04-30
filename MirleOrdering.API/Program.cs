@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using MirleOrdering.Data;
 using System;
 
-namespace MirleOrdering.API
+namespace MirleOrdering.Api
 {
     public class Program
     {

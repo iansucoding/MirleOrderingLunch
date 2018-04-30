@@ -23,6 +23,10 @@ namespace MirleOrdering.Service
             CategoryId = category.Id,
             CategoryName = category.Name,
             Description = category.Description,
+            PhoneNumber = category.PhoneNumber,
+            Address = category.Address,
+            Url = category.Url,
+            Image = category.Image,
             Seq = category.Seq,
             Products = category.Products == null ? null : category.Products.Select(prodcut => new ProductViewModel
             {
@@ -30,7 +34,6 @@ namespace MirleOrdering.Service
                 ProductName = prodcut.Name,
                 Price = prodcut.Price,
                 Description = prodcut.Description,
-
             })
         };
 
@@ -55,6 +58,10 @@ namespace MirleOrdering.Service
             {
                 Name = model.CategoryName,
                 Description = model.Description,
+                Address = model.Address,
+                PhoneNumber = model.PhoneNumber,
+                Url = model.Url,
+                Image = model.Image,
                 AddedOn = DateTime.Now,
             };
             try
@@ -85,6 +92,8 @@ namespace MirleOrdering.Service
             entity.Seq = model.Seq;
             entity.PhoneNumber = model.PhoneNumber;
             entity.Address = model.Address;
+            entity.Url = model.Url;
+            entity.Image = model.Image;
             entity.ModifiedOn = DateTime.Now;
 
             try

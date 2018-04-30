@@ -82,7 +82,7 @@ namespace MirleOrdering.Api.Controllers
             var result = _productService.Update(product);
             if (result.IsSuccess)
             {
-                return CreatedAtRoute("GetUser", new { id = product.ProductId }, product);
+                return CreatedAtRoute("GetProduct", new { id = product.ProductId }, product);
             }
             return BadRequest(result);
         }

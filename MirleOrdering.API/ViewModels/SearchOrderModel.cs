@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MirleOrdering.API.ViewModels
+namespace MirleOrdering.Api.ViewModels
 {
     public class SearchOrderModel
     {

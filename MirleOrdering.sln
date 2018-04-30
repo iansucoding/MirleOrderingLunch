@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MirleOrdering.API", "MirleOrdering.API\MirleOrdering.API\MirleOrdering.API.csproj", "{7E476EA6-1407-45E2-9240-83A5DC8E3730}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MirleOrdering.Data", "MirleOrdering.Data\MirleOrdering.Data.csproj", "{50D20D5E-464C-4245-B9FF-F700F980E5A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MirleOrdering.Repo", "MirleOrdering.Repo\MirleOrdering.Repo.csproj", "{47A3A175-A946-474E-8D38-7AA3F0D6ED9F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MirleOrdering.Service", "MirleOrdering.Service\MirleOrdering.Service.csproj", "{CC24614A-E9C3-435D-BC5E-02D3A320AD5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MirleOrdering.Api", "MirleOrdering.API\MirleOrdering.Api.csproj", "{B2E485E2-C830-421A-A279-8CBCB2D69A3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7E476EA6-1407-45E2-9240-83A5DC8E3730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E476EA6-1407-45E2-9240-83A5DC8E3730}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E476EA6-1407-45E2-9240-83A5DC8E3730}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E476EA6-1407-45E2-9240-83A5DC8E3730}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50D20D5E-464C-4245-B9FF-F700F980E5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50D20D5E-464C-4245-B9FF-F700F980E5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D20D5E-464C-4245-B9FF-F700F980E5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{CC24614A-E9C3-435D-BC5E-02D3A320AD5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC24614A-E9C3-435D-BC5E-02D3A320AD5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC24614A-E9C3-435D-BC5E-02D3A320AD5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E485E2-C830-421A-A279-8CBCB2D69A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E485E2-C830-421A-A279-8CBCB2D69A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E485E2-C830-421A-A279-8CBCB2D69A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E485E2-C830-421A-A279-8CBCB2D69A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

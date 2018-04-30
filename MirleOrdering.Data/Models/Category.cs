@@ -12,6 +12,10 @@ namespace MirleOrdering.Data.Models
 
         public string Address { get; set; }
 
+        public string Url { get; set; }
+
+        public string Image { get; set; }
+
         public int Seq { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

@@ -21,7 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MirleOrdering.Service\MirleOrdering.Service.csproj" />
+    <ProjectReference Include="..\MirleOrdering.Service\MirleOrdering.Service.csproj" />
+    <ProjectReference Include="..\MirleOrdering.Repo\MirleOrdering.Repo.csproj" />
+    <ProjectReference Include="..\MirleOrdering.Service\MirleOrdering.Service.csproj" />
   </ItemGroup>
 
 </Project>

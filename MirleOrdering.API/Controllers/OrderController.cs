@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MirleOrdering.API.ViewModels;
+using MirleOrdering.Api.ViewModels;
 using MirleOrdering.Service.Interfaces;
 using MirleOrdering.Service.ViewModels;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MirleOrdering.API.Controllers
+namespace MirleOrdering.Api.Controllers
 {
     [Route("api/[controller]")]
     public class OrderController : Controller

@@ -13,7 +13,7 @@ using MirleOrdering.Service.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
-namespace MirleOrdering.API
+namespace MirleOrdering.Api
 {
     public class Startup
     {
@@ -31,6 +31,7 @@ namespace MirleOrdering.API
             services.AddDbContext<MirleOrderingContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MirleOrderingContext")));
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(AppService));
             services.AddTransient(typeof(AuthService));
             services.AddTransient(typeof(HelperService));
             services.AddTransient<IProductService, ProductService>();
@@ -38,6 +39,9 @@ namespace MirleOrdering.API
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<ISettingService, SettingService>();
+            services.AddTransient<IScheduleService, ScheduleService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddCors(options =>
             {
