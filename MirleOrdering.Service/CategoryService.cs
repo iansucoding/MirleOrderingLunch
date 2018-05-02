@@ -159,5 +159,26 @@ namespace MirleOrdering.Service
                 Text = c.Name
             });
         }
+
+        public bool UpdateImageById(long id, string path)
+        {
+            var entity = _repository.GetById(id);
+            if (entity == null)
+            {
+                return false;
+            }
+            entity.Image = path;
+            entity.ModifiedOn = DateTime.Now;
+
+            try
+            {
+                _repository.Update(entity);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

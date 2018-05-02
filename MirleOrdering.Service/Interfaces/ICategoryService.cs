@@ -9,5 +9,6 @@ namespace MirleOrdering.Service.Interfaces
         CategoryViewModel GetByIdWithProducts(long id);
         IEnumerable<CategoryViewModel> GetAllWithProducts();
         IEnumerable<SelectionViewModel> GetSelection();
+        bool UpdateImageById(long id, string path);
     }
 }

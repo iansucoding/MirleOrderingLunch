@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MirleOrdering.Api.Services;
 using MirleOrdering.Api.ViewModels;
 using MirleOrdering.Service.Interfaces;
 using MirleOrdering.Service.ViewModels;
-using System;
-using System.IO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,12 +12,12 @@ namespace MirleOrdering.Api.Controllers
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
-        private readonly IHostingEnvironment _environment;
+        private readonly AppService _appService;
 
-        public CategoryController(ICategoryService categoryService, IHostingEnvironment environment)
+        public CategoryController(ICategoryService categoryService, AppService appService)
         {
             _categoryService = categoryService;
-            _environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            _appService = appService;
         }
         // GET: api/category
         [HttpGet]
@@ -61,7 +59,7 @@ namespace MirleOrdering.Api.Controllers
 
         // POST api/category
         [HttpPost]
-        public IActionResult Create([FromBody]CategoryCreationModel model)
+        public IActionResult Create(CategoryCreationModel model)
         {
             if (model == null)
             {
@@ -71,29 +69,19 @@ namespace MirleOrdering.Api.Controllers
             {
                 return BadRequest(ModelState);
             }
-            // upload image file
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-            var path = Path.Combine(uploads, model.File.FileName);
-            if (model.File.Length > 0)
-            {
-                using (var fileStream = new FileStream(path, FileMode.Create))
-                {
-                    model.File.CopyTo(fileStream);
-                }
-            }
 
-            var vm = new CategoryViewModel
+            var vm = new CategoryBaseModel
             {
                 CategoryName = model.CategoryName,
                 Description = model.Description,
                 Address = model.Address,
                 PhoneNumber = model.PhoneNumber,
-                Url = model.Url,
-                Image = path,
+                Url = model.Url
             };
             var result = _categoryService.Create(vm);
             if (result.IsSuccess)
             {
+                // 
                 var data = new
                 {
                     categoryId = long.Parse(result.Message),
@@ -102,6 +90,13 @@ namespace MirleOrdering.Api.Controllers
                     model.PhoneNumber,
                     model.Address
                 };
+                // upload file
+                if (model.File != null && model.File.Length > 0)
+                {
+                    var imageName = $"category_{data.categoryId}";
+                    var imagePath = _appService.Upload(model.File, imageName).Result;
+                    var isUpdateImageSuccess = _categoryService.UpdateImageById(data.categoryId, imagePath);
+                }
                 return CreatedAtRoute("GetCategory", new { id = data.categoryId }, data);
             }
             return BadRequest(result);

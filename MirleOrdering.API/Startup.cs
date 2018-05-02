@@ -67,9 +67,10 @@ namespace MirleOrdering.Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                     };
                 });
-
+            // ASP.NET Core Web API 很貼心的把回傳物件格式預設為 JSON camelCase
             services.AddMvc().AddJsonOptions(options =>
             {
+                // 在轉型的過程中如果找不到欄位會自動轉成 null，不想傳送數值為 null 的欄位可以這樣設定
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             }); ;
 
@@ -87,6 +88,7 @@ namespace MirleOrdering.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles(); // UseStaticFiles 預設啟用靜態檔案的目錄是 wwwroot
             app.UseAuthentication();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

@@ -13,6 +13,7 @@ namespace MirleOrdering.Service
     {
         private readonly IRepository<Schedule> _repository;
         private readonly ICategoryService _categoryService;
+
         public ScheduleService(IRepository<Schedule> repository, ICategoryService categoryService)
         {
             _repository = repository;
